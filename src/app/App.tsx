@@ -1,15 +1,9 @@
-import styles from './App.module.css'
+import { createBrowserRouter, RouterProvider } from 'react-router'
+
+import { routes } from './routes'
+
+const router = createBrowserRouter(routes)
 
 export function App() {
-  return (
-    <div className={styles.shell}>
-      <header className={styles.header}>
-        <span className={styles.brand}>Companion.energy</span>
-        <span className={styles.section}>Contracts</span>
-      </header>
-      <main className={styles.main}>
-        <h1>Contracts prototype</h1>
-      </main>
-    </div>
-  )
+  return <RouterProvider router={router} />
 }

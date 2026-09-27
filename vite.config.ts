@@ -7,6 +7,7 @@ export default defineConfig({
     // Listen on all interfaces so the dev server is reachable from outside the Docker container.
     host: true,
     port: 5173,
+    watch: { usePolling: process.env.VITE_USE_POLLING === 'true' },
   },
   test: {
     environment: 'jsdom',

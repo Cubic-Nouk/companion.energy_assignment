@@ -1,10 +1,18 @@
 # syntax=docker/dockerfile:1
 
-# Build stage: install dependencies and produce the static bundle.
-FROM node:24-alpine AS build
+# Dependencies, shared by the dev server and the production build.
+FROM node:24-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
+
+# Dev server with hot reload. The source is bind-mounted by docker-compose, not copied.
+FROM deps AS dev
+EXPOSE 5173
+CMD ["npm", "run", "dev"]
+
+# Production bundle.
+FROM deps AS build
 COPY . .
 RUN npm run build
 

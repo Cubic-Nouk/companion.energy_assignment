@@ -1,14 +1,49 @@
-/* Design tokens. Components reference these, never raw values. */
+/*
+ * Design tokens. Components reference the semantic tokens, never the raw palette.
+ * White theme only. The neutral ramp ends on --color-black, the near-black the
+ * production app uses, so every shade shares its cool blue-grey hue.
+ */
 :root {
-  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+  /* Palette: neutral ramp */
+  --color-white: oklch(1 0 0);
+  --color-n-50: oklch(0.985 0.002 247.839);
+  --color-n-100: oklch(0.967 0.003 264.542);
+  --color-n-200: oklch(0.928 0.006 264.531);
+  --color-n-300: oklch(0.872 0.01 258.338);
+  --color-n-400: oklch(0.707 0.022 261.325);
+  --color-n-500: oklch(0.551 0.027 264.364);
+  --color-n-600: oklch(0.446 0.03 256.802);
+  --color-n-700: oklch(0.373 0.034 259.733);
+  --color-n-800: oklch(0.278 0.033 256.848);
+  --color-n-900: oklch(0.21 0.034 264.665);
+  --color-black: oklch(0.13 0.028 261.692);
 
-  --color-bg: #f6f7f5;
-  --color-surface: #ffffff;
-  --color-border: #e2e5e0;
-  --color-text: #1b1f1c;
-  --color-text-muted: #5f6861;
+  /* Semantic colors */
+  --color-bg: var(--color-white);
+  --color-surface: var(--color-white);
+  --color-surface-hover: var(--color-n-50);
+  --color-surface-selected: var(--color-n-100);
+  --color-border: var(--color-n-200);
+  --color-text: var(--color-black);
+  --color-text-secondary: var(--color-n-600);
+  --color-text-muted: var(--color-n-500);
 
+  /* Typography */
+  /* Same stack as the production app (Tailwind's default): the OS UI font on every platform. */
+  --font-sans:
+    ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+
+  /* Spacing */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -16,6 +51,14 @@
   --space-5: 1.5rem;
   --space-6: 2rem;
 
+  /* Radii */
   --radius-sm: 4px;
-  --radius-md: 8px;
+  --radius-md: 6px;
+  --radius-full: 9999px;
+
+  /* Layout */
+  --sidebar-width: 256px;
+
+  /* Motion */
+  --duration-fast: 120ms;
 }

@@ -6,11 +6,22 @@ A prototype for the Companion.energy dashboard.
 
 ### With Docker (no Node needed)
 
+**Production build**, served by nginx on <http://localhost:8080>:
+
 ```bash
 docker compose up --build
 ```
 
-Then open <http://localhost:8080>.
+**Dev server with hot reload** on <http://localhost:5173>:
+
+```bash
+docker compose up --build dev
+```
+
+The dev server mounts the source folder into the container, so edits apply immediately. The
+production build does not reload: rebuild it with `--build` to see changes.
+
+Stop either one with `docker compose --profile dev down` (plain `down` skips the dev service).
 
 ### With Node
 
@@ -52,9 +63,13 @@ _To be written._
 
 ```
 src/
-  app/      App shell
-  styles/   Design tokens and global styles
-  test/     Test setup
+  app/         Layout, routes and the sidebar navigation config
+  components/  Shared UI components (Sidebar, …)
+  data/        Mock data
+  lib/         Pure helpers
+  pages/       One folder or file per page
+  styles/      Design tokens and global styles
+  test/        Test setup
 ```
 
 ## Stack

@@ -1,6 +1,25 @@
 services:
+  # Production build served by nginx: `docker compose up --build`
   web:
-    build: .
+    build:
+      context: .
+      target: runtime
     ports:
       - '8080:80'
     restart: unless-stopped
+
+  # Vite dev server with hot reload: `docker compose up --build dev`
+  dev:
+    profiles: [dev]
+    build:
+      context: .
+      target: dev
+    ports:
+      - '5173:5173'
+    volumes:
+      - .:/app
+      # Keep the container's Linux node_modules; the host's (possibly Windows) ones would shadow them.
+      - /app/node_modules
+    environment:
+      # File events do not cross the Docker Desktop bind mount on Windows and macOS, so poll instead.
+      VITE_USE_POLLING: 'true'
