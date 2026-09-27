@@ -18,8 +18,21 @@
   --color-n-900: oklch(0.21 0.034 264.665);
   --color-black: oklch(0.13 0.028 261.692);
 
+  /*
+   * Palette: chart series, a validated categorical order (colour-blind safe between neighbours).
+   * Assign in this order, never cycled. Slots 3 to 5 sit under 3:1 on white, so a series using
+   * them must also carry a visible text label.
+   */
+  --color-series-1: #2a78d6;
+  --color-series-2: #eb6834;
+  --color-series-3: #1baf7a;
+  --color-series-4: #eda100;
+  --color-series-5: #e87ba4;
+  --color-series-6: #008300;
+
   /* Semantic colors */
   --color-bg: var(--color-white);
+  --color-canvas: var(--color-n-100);
   --color-surface: var(--color-white);
   --color-surface-hover: var(--color-n-50);
   --color-surface-selected: var(--color-n-100);
@@ -27,6 +40,7 @@
   --color-text: var(--color-black);
   --color-text-secondary: var(--color-n-600);
   --color-text-muted: var(--color-n-500);
+  --color-chip: var(--color-n-50);
 
   /* Typography */
   /* Same stack as the production app (Tailwind's default): the OS UI font on every platform. */
@@ -39,9 +53,7 @@
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
-  --text-lg: 1.125rem;
   --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -54,10 +66,16 @@
   /* Radii */
   --radius-sm: 4px;
   --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-chip: 12px;
   --radius-full: 9999px;
 
   /* Layout */
   --sidebar-width: 256px;
+  --control-height: 36px;
+
+  /* Elevation */
+  --shadow-popover: 0 8px 24px oklch(0.13 0.028 261.692 / 0.1);
 
   /* Motion */
   --duration-fast: 120ms;

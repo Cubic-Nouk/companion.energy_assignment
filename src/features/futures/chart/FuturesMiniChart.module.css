@@ -1,0 +1,38 @@
+.container svg {
+  display: block;
+  touch-action: pan-y;
+}
+
+.grid line {
+  stroke: var(--color-border);
+}
+
+.axis text {
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  fill: var(--color-text-muted);
+}
+
+.band {
+  fill: var(--series-color);
+  fill-opacity: 0.16;
+}
+
+.bandEdge {
+  fill: none;
+  stroke: var(--series-color);
+  stroke-opacity: 0.5;
+  stroke-width: 1;
+}
+
+.line {
+  fill: none;
+  stroke: var(--series-color);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.crosshair {
+  stroke: var(--color-n-400);
+  stroke-dasharray: 3 3;
+}

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router'
 
 import { Sidebar } from '../components/Sidebar/Sidebar'
-import { CURRENT_USER } from '../data/currentUser'
+import { CURRENT_USER } from '../api/currentUser'
 import styles from './AppLayout.module.css'
 import { NAVIGATION } from './navigation'
 

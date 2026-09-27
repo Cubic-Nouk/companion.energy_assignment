@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router'
 import { describe, expect, it } from 'vitest'
 
 import { NAVIGATION } from '../../app/navigation'
-import type { User } from '../../data/currentUser'
+import type { User } from '../../api/currentUser'
 import { Sidebar } from './Sidebar'
 
 const user: User = { firstName: 'Alex', lastName: 'Martin', email: 'alex.martin@org-energy.com' }

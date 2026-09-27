@@ -3,7 +3,10 @@
   min-height: 100vh;
 }
 
+/* Column so a page can let its content area grow to the bottom of the viewport. */
 .main {
+  display: flex;
   flex: 1;
+  flex-direction: column;
   min-width: 0;
 }

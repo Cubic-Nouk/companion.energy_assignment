@@ -17,7 +17,7 @@ export const NAVIGATION: readonly NavCategory[] = [
       { label: 'Control Room', path: '/control-room', isEnabled: false },
       { label: 'Contracts', path: '/contracts', isEnabled: true },
       { label: 'Budgets', path: '/budgets', isEnabled: false },
-      { label: 'Market Data', path: '/market-data', isEnabled: false },
+      { label: 'Market Data', path: '/market-data', isEnabled: true },
     ],
   },
   {
@@ -32,11 +32,8 @@ export const NAVIGATION: readonly NavCategory[] = [
     label: 'Flexibility',
     items: [
       { label: 'Savings', path: '/flexibility/savings', isEnabled: false },
-      {
-        label: 'Nomination & Forecasts',
-        path: '/flexibility/nomination-forecasts',
-        isEnabled: false,
-      },
+      { label: 'Nomination', path: '/flexibility/nomination', isEnabled: false },
+      { label: 'Forecasts', path: '/flexibility/forecasts', isEnabled: false },
     ],
   },
 ]

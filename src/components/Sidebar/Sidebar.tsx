@@ -1,8 +1,7 @@
-import { NavLink } from 'react-router'
-
 import type { NavCategory } from '../../app/navigation'
-import type { User } from '../../data/currentUser'
+import type { User } from '../../api/currentUser'
 import { getInitials } from '../../lib/initials'
+import { NavItemLink } from '../NavItemLink/NavItemLink'
 import styles from './Sidebar.module.css'
 
 interface SidebarProps {
@@ -27,16 +26,7 @@ export function Sidebar({ organisationName, categories, user }: SidebarProps) {
               <ul className={styles.pages} aria-labelledby={headingId}>
                 {category.items.map((item) => (
                   <li key={item.path}>
-                    {item.isEnabled ? (
-                      // Function form: NavLink's static className rejects the `string | undefined` of a CSS module key.
-                      <NavLink to={item.path} className={() => styles.link}>
-                        {item.label}
-                      </NavLink>
-                    ) : (
-                      <span role="link" aria-disabled="true" className={styles.link}>
-                        {item.label}
-                      </span>
-                    )}
+                    <NavItemLink item={item} className={styles.link} />
                   </li>
                 ))}
               </ul>

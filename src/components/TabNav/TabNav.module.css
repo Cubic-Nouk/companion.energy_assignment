@@ -1,0 +1,42 @@
+.tabNav {
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.tabs {
+  display: flex;
+}
+
+.tab {
+  display: block;
+  /* Overlaps the nav's bottom border so the active underline sits on it. */
+  margin-bottom: -1px;
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 2px solid transparent;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease-out;
+}
+
+.tab:hover {
+  color: var(--color-text);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: -2px;
+}
+
+/* Same specificity as :hover (0,2,0) and declared after it, so these states win on hover. */
+.tab[aria-current='page'] {
+  border-bottom-color: var(--color-black);
+  color: var(--color-text);
+}
+
+.tab[aria-disabled='true'] {
+  color: var(--color-n-400);
+  cursor: default;
+}
