@@ -14,8 +14,8 @@ export const NAVIGATION: readonly NavCategory[] = [
   {
     label: 'System',
     items: [
-      { label: 'Control Room', path: '/control-room', isEnabled: false },
-      { label: 'Contracts', path: '/contracts', isEnabled: true },
+      { label: 'Control Room', path: '/control-room', isEnabled: true },
+      { label: 'Contracts', path: '/contracts', isEnabled: false },
       { label: 'Budgets', path: '/budgets', isEnabled: false },
       { label: 'Market Data', path: '/market-data', isEnabled: true },
     ],

@@ -8,7 +8,7 @@ import { Sidebar } from './Sidebar'
 
 const user: User = { firstName: 'Alex', lastName: 'Martin', email: 'alex.martin@org-energy.com' }
 
-function renderSidebar(path = '/contracts') {
+function renderSidebar(path = '/market-data') {
   return render(
     <MemoryRouter initialEntries={[path]}>
       <Sidebar organisationName="Org-Energy" categories={NAVIGATION} user={user} />
@@ -37,9 +37,12 @@ describe('Sidebar', () => {
   })
 
   it('marks the link for the current page', () => {
-    renderSidebar('/contracts')
+    renderSidebar('/market-data')
 
-    expect(screen.getByRole('link', { name: 'Contracts' })).toHaveAttribute('aria-current', 'page')
+    expect(screen.getByRole('link', { name: 'Market Data' })).toHaveAttribute(
+      'aria-current',
+      'page',
+    )
   })
 
   it('shows pages the prototype does not build as disabled, without a destination', () => {
@@ -48,7 +51,10 @@ describe('Sidebar', () => {
     const budgets = screen.getByRole('link', { name: 'Budgets' })
     expect(budgets).toHaveAttribute('aria-disabled', 'true')
     expect(budgets).not.toHaveAttribute('href')
-    expect(screen.getByRole('link', { name: 'Contracts' })).toHaveAttribute('href', '/contracts')
+    expect(screen.getByRole('link', { name: 'Market Data' })).toHaveAttribute(
+      'href',
+      '/market-data',
+    )
   })
 
   it('shows the user identity with their initials', () => {

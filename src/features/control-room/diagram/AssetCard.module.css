@@ -1,0 +1,105 @@
+.card {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+/* Each kind tints its icon strip; the pairs live in the tokens. */
+.card[data-kind='gridConnection'] {
+  --kind-bg: var(--color-asset-grid-bg);
+  --kind-icon: var(--color-asset-grid-icon);
+}
+
+.card[data-kind='battery'] {
+  --kind-bg: var(--color-asset-battery-bg);
+  --kind-icon: var(--color-asset-battery-icon);
+}
+
+.card[data-kind='solar'] {
+  --kind-bg: var(--color-asset-solar-bg);
+  --kind-icon: var(--color-asset-solar-icon);
+}
+
+.card[data-kind='wind'] {
+  --kind-bg: var(--color-asset-wind-bg);
+  --kind-icon: var(--color-asset-wind-icon);
+}
+
+.iconArea {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 56px;
+  border-right: 1px solid var(--color-border);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  background: var(--kind-bg);
+  color: var(--kind-icon);
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  padding: 0 var(--space-4);
+}
+
+.title,
+.subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title {
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.grip {
+  display: grid;
+  align-self: center;
+  flex-shrink: 0;
+  place-items: center;
+  margin-right: var(--space-3);
+  padding: var(--space-1);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--color-n-300);
+}
+
+.grip:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 0;
+}
+
+.tooltip {
+  z-index: 10;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+/* React Flow draws the handle; these only restyle it as a small dark dot on the edge. */
+.handle {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  background: var(--color-n-600);
+}

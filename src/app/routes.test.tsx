@@ -1,9 +1,19 @@
 import { render, screen } from '@testing-library/react'
 import { createMemoryRouter, RouterProvider } from 'react-router'
-import { describe, expect, it } from 'vitest'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 
-import { LAZY_ROUTE_TIMEOUT } from '../test/constants'
 import { routes } from './routes'
+
+// MapLibre needs WebGL, which jsdom lacks; routing is what is under test here.
+vi.mock('../features/control-room/map/SiteMap', () => ({ SiteMap: () => null }))
+
+// Load the lazy pages up front: a cold compile inside a test can outlast its time limit.
+beforeAll(async () => {
+  await Promise.all([
+    import('../pages/control-room/ControlRoomPage'),
+    import('../pages/market-data/FuturesSection'),
+  ])
+})
 
 function renderAt(path: string) {
   const router = createMemoryRouter(routes, { initialEntries: [path] })
@@ -12,26 +22,29 @@ function renderAt(path: string) {
 }
 
 describe('routes', () => {
-  it('opens the contracts page by default', () => {
+  it('opens the control room by default', async () => {
     const router = renderAt('/')
 
-    expect(router.state.location.pathname).toBe('/contracts')
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Contracts')
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'Control Room' }),
+    ).toBeInTheDocument()
+    expect(router.state.location.pathname).toBe('/control-room')
   })
 
   it('opens the futures section of market data', async () => {
     const router = renderAt('/market-data')
 
-    expect(
-      await screen.findByRole('heading', { name: 'Futures Market Data' }, LAZY_ROUTE_TIMEOUT),
-    ).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'Futures Market Data' })).toBeInTheDocument()
     expect(router.state.location.pathname).toBe('/market-data/futures')
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Market Data')
   })
 
-  it('sends paths without a page back to contracts', () => {
+  it('sends paths without a page back to the control room', async () => {
     const router = renderAt('/budgets')
 
-    expect(router.state.location.pathname).toBe('/contracts')
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'Control Room' }),
+    ).toBeInTheDocument()
+    expect(router.state.location.pathname).toBe('/control-room')
   })
 })

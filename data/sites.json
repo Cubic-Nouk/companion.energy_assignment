@@ -1,0 +1,524 @@
+[
+  {
+    "id": "antwerp-cold-storage",
+    "name": "Scheldt Cold Storage",
+    "category": "logistics",
+    "address": {
+      "street": "Scheldelaan 450",
+      "postalCode": "2040",
+      "city": "Antwerp",
+      "country": "Belgium"
+    },
+    "coordinates": [4.3021, 51.2934],
+    "assets": [
+      {
+        "id": "antwerp-cold-storage-solar",
+        "type": "solar",
+        "capacityKw": 850
+      },
+      {
+        "id": "antwerp-cold-storage-battery",
+        "type": "battery",
+        "capacityKw": 500,
+        "isSteered": false
+      }
+    ],
+    "contractIds": ["c-engie-2026", "c-hedge-cal27"]
+  },
+  {
+    "id": "antwerp-chemicals",
+    "name": "Polder Chemicals",
+    "category": "industrial",
+    "address": {
+      "street": "Polderdijkweg 16",
+      "postalCode": "2030",
+      "city": "Antwerp",
+      "country": "Belgium"
+    },
+    "coordinates": [4.2745, 51.3082],
+    "assets": [
+      {
+        "id": "antwerp-chemicals-solar",
+        "type": "solar",
+        "capacityKw": 1200
+      }
+    ],
+    "contractIds": ["c-engie-2026"]
+  },
+  {
+    "id": "antwerp-logistics",
+    "name": "Kanaaldok Logistics",
+    "category": "logistics",
+    "address": {
+      "street": "Noorderlaan 147",
+      "postalCode": "2030",
+      "city": "Antwerp",
+      "country": "Belgium"
+    },
+    "coordinates": [4.3312, 51.2861],
+    "assets": [],
+    "contractIds": []
+  },
+  {
+    "id": "antwerp-terminal",
+    "name": "Delwaide Container Terminal",
+    "category": "logistics",
+    "address": {
+      "street": "Scheldelaan 600",
+      "postalCode": "2040",
+      "city": "Antwerp",
+      "country": "Belgium"
+    },
+    "coordinates": [4.2903, 51.3197],
+    "assets": [
+      {
+        "id": "antwerp-terminal-solar",
+        "type": "solar",
+        "capacityKw": 2100
+      },
+      {
+        "id": "antwerp-terminal-battery",
+        "type": "battery",
+        "capacityKw": 1000,
+        "isSteered": true
+      }
+    ],
+    "contractIds": ["c-luminus-spot", "c-ppa-wind"]
+  },
+  {
+    "id": "antwerp-bakery",
+    "name": "Noorderlaan Industrial Bakery",
+    "category": "industrial",
+    "address": {
+      "street": "Bredabaan 1250",
+      "postalCode": "2170",
+      "city": "Antwerp",
+      "country": "Belgium"
+    },
+    "coordinates": [4.3998, 51.2515],
+    "assets": [],
+    "contractIds": ["c-luminus-spot"]
+  },
+  {
+    "id": "antwerp-recycling",
+    "name": "Scheldt Metal Recycling",
+    "category": "industrial",
+    "address": {
+      "street": "Oosterweelsteenweg 82",
+      "postalCode": "2030",
+      "city": "Antwerp",
+      "country": "Belgium"
+    },
+    "coordinates": [4.3405, 51.2692],
+    "assets": [
+      {
+        "id": "antwerp-recycling-solar",
+        "type": "solar",
+        "capacityKw": 600
+      }
+    ],
+    "contractIds": []
+  },
+  {
+    "id": "ghent-steel",
+    "name": "Kluizendok Steel Processing",
+    "category": "industrial",
+    "address": {
+      "street": "John Kennedylaan 51",
+      "postalCode": "9042",
+      "city": "Ghent",
+      "country": "Belgium"
+    },
+    "coordinates": [3.8019, 51.1638],
+    "assets": [
+      {
+        "id": "ghent-steel-solar",
+        "type": "solar",
+        "capacityKw": 1800
+      },
+      {
+        "id": "ghent-steel-wind",
+        "type": "wind",
+        "capacityKw": 3000
+      }
+    ],
+    "contractIds": ["c-engie-2026", "c-ppa-wind"]
+  },
+  {
+    "id": "ghent-paper",
+    "name": "Ghent Paper Mill",
+    "category": "industrial",
+    "address": {
+      "street": "Pantserschipstraat 207",
+      "postalCode": "9000",
+      "city": "Ghent",
+      "country": "Belgium"
+    },
+    "coordinates": [3.7689, 51.1311],
+    "assets": [
+      {
+        "id": "ghent-paper-battery",
+        "type": "battery",
+        "capacityKw": 750,
+        "isSteered": false
+      }
+    ],
+    "contractIds": []
+  },
+  {
+    "id": "ghent-food",
+    "name": "Rodenhuize Food Processing",
+    "category": "industrial",
+    "address": {
+      "street": "Rodenhuizekaai 4",
+      "postalCode": "9042",
+      "city": "Ghent",
+      "country": "Belgium"
+    },
+    "coordinates": [3.7862, 51.1452],
+    "assets": [],
+    "contractIds": ["c-luminus-spot"]
+  },
+  {
+    "id": "ghent-datacenter",
+    "name": "Ghent Data Centre",
+    "category": "dataCentre",
+    "address": {
+      "street": "Technologiepark 3",
+      "postalCode": "9052",
+      "city": "Ghent",
+      "country": "Belgium"
+    },
+    "coordinates": [3.7157, 51.0453],
+    "assets": [
+      {
+        "id": "ghent-datacenter-battery",
+        "type": "battery",
+        "capacityKw": 2000,
+        "isSteered": false
+      }
+    ],
+    "contractIds": ["c-hedge-cal27"]
+  },
+  {
+    "id": "brussels-hospital",
+    "name": "Anderlecht Hospital",
+    "category": "public",
+    "address": {
+      "street": "Rue Wayez 110",
+      "postalCode": "1070",
+      "city": "Brussels",
+      "country": "Belgium"
+    },
+    "coordinates": [4.3102, 50.8369],
+    "assets": [
+      {
+        "id": "brussels-hospital-solar",
+        "type": "solar",
+        "capacityKw": 400
+      }
+    ],
+    "contractIds": ["c-engie-2026"]
+  },
+  {
+    "id": "brussels-offices",
+    "name": "Quartier Nord Offices",
+    "category": "commercial",
+    "address": {
+      "street": "Boulevard du Roi Albert II 30",
+      "postalCode": "1000",
+      "city": "Brussels",
+      "country": "Belgium"
+    },
+    "coordinates": [4.3571, 50.8615],
+    "assets": [],
+    "contractIds": ["c-luminus-spot"]
+  },
+  {
+    "id": "brussels-printing",
+    "name": "Haren Printing Works",
+    "category": "industrial",
+    "address": {
+      "street": "Rue de la Fusée 50",
+      "postalCode": "1130",
+      "city": "Brussels",
+      "country": "Belgium"
+    },
+    "coordinates": [4.4198, 50.8883],
+    "assets": [
+      {
+        "id": "brussels-printing-solar",
+        "type": "solar",
+        "capacityKw": 350
+      }
+    ],
+    "contractIds": ["c-engie-2026"]
+  },
+  {
+    "id": "brussels-mall",
+    "name": "Woluwe Shopping Centre",
+    "category": "commercial",
+    "address": {
+      "street": "Rue Saint-Lambert 200",
+      "postalCode": "1200",
+      "city": "Brussels",
+      "country": "Belgium"
+    },
+    "coordinates": [4.4371, 50.8475],
+    "assets": [
+      {
+        "id": "brussels-mall-solar",
+        "type": "solar",
+        "capacityKw": 900
+      },
+      {
+        "id": "brussels-mall-battery",
+        "type": "battery",
+        "capacityKw": 300,
+        "isSteered": false
+      }
+    ],
+    "contractIds": ["c-engie-2026"]
+  },
+  {
+    "id": "leuven-brewery",
+    "name": "Leuven Brewery",
+    "category": "industrial",
+    "address": {
+      "street": "Vuurkruisenlaan 1",
+      "postalCode": "3000",
+      "city": "Leuven",
+      "country": "Belgium"
+    },
+    "coordinates": [4.7156, 50.8889],
+    "assets": [
+      {
+        "id": "leuven-brewery-solar",
+        "type": "solar",
+        "capacityKw": 700
+      }
+    ],
+    "contractIds": ["c-luminus-spot", "c-hedge-cal27"]
+  },
+  {
+    "id": "mechelen-pharma",
+    "name": "Mechelen Pharma Plant",
+    "category": "industrial",
+    "address": {
+      "street": "Generaal De Wittelaan 11",
+      "postalCode": "2800",
+      "city": "Mechelen",
+      "country": "Belgium"
+    },
+    "coordinates": [4.4892, 51.0368],
+    "assets": [
+      {
+        "id": "mechelen-pharma-battery",
+        "type": "battery",
+        "capacityKw": 1500,
+        "isSteered": false
+      }
+    ],
+    "contractIds": []
+  },
+  {
+    "id": "bruges-dairy",
+    "name": "Bruges Dairy Cooperative",
+    "category": "industrial",
+    "address": {
+      "street": "Blankenbergse Steenweg 200",
+      "postalCode": "8000",
+      "city": "Bruges",
+      "country": "Belgium"
+    },
+    "coordinates": [3.2412, 51.2233],
+    "assets": [
+      {
+        "id": "bruges-dairy-solar",
+        "type": "solar",
+        "capacityKw": 550
+      }
+    ],
+    "contractIds": ["c-engie-2026"]
+  },
+  {
+    "id": "zeebrugge-lng",
+    "name": "Zeebrugge Port Services",
+    "category": "logistics",
+    "address": {
+      "street": "Leopold II-dam 35",
+      "postalCode": "8380",
+      "city": "Zeebrugge",
+      "country": "Belgium"
+    },
+    "coordinates": [3.1988, 51.3312],
+    "assets": [
+      {
+        "id": "zeebrugge-lng-wind",
+        "type": "wind",
+        "capacityKw": 4200
+      }
+    ],
+    "contractIds": ["c-ppa-wind"]
+  },
+  {
+    "id": "kortrijk-textiles",
+    "name": "Kortrijk Textiles",
+    "category": "industrial",
+    "address": {
+      "street": "Kortrijksesteenweg 1100",
+      "postalCode": "8500",
+      "city": "Kortrijk",
+      "country": "Belgium"
+    },
+    "coordinates": [3.2649, 50.8279],
+    "assets": [],
+    "contractIds": []
+  },
+  {
+    "id": "charleroi-glass",
+    "name": "Charleroi Glassworks",
+    "category": "industrial",
+    "address": {
+      "street": "Rue de Gosselies 45",
+      "postalCode": "6000",
+      "city": "Charleroi",
+      "country": "Belgium"
+    },
+    "coordinates": [4.4442, 50.4108],
+    "assets": [
+      {
+        "id": "charleroi-glass-solar",
+        "type": "solar",
+        "capacityKw": 1100
+      }
+    ],
+    "contractIds": ["c-luminus-spot"]
+  },
+  {
+    "id": "namur-university",
+    "name": "Namur University Campus",
+    "category": "public",
+    "address": {
+      "street": "Rue de Bruxelles 61",
+      "postalCode": "5000",
+      "city": "Namur",
+      "country": "Belgium"
+    },
+    "coordinates": [4.8617, 50.4652],
+    "assets": [
+      {
+        "id": "namur-university-solar",
+        "type": "solar",
+        "capacityKw": 480
+      }
+    ],
+    "contractIds": []
+  },
+  {
+    "id": "liege-steel",
+    "name": "Seraing Steel Works",
+    "category": "industrial",
+    "address": {
+      "street": "Quai du Halage 10",
+      "postalCode": "4100",
+      "city": "Seraing",
+      "country": "Belgium"
+    },
+    "coordinates": [5.5101, 50.6035],
+    "assets": [
+      {
+        "id": "liege-steel-solar",
+        "type": "solar",
+        "capacityKw": 2400
+      },
+      {
+        "id": "liege-steel-battery",
+        "type": "battery",
+        "capacityKw": 1200,
+        "isSteered": true
+      }
+    ],
+    "contractIds": ["c-engie-2026", "c-hedge-cal27"]
+  },
+  {
+    "id": "liege-airport",
+    "name": "Liège Airport Cargo Hub",
+    "category": "logistics",
+    "address": {
+      "street": "Rue de l'Aéroport 50",
+      "postalCode": "4460",
+      "city": "Grâce-Hollogne",
+      "country": "Belgium"
+    },
+    "coordinates": [5.4432, 50.6374],
+    "assets": [
+      {
+        "id": "liege-airport-solar",
+        "type": "solar",
+        "capacityKw": 1600
+      }
+    ],
+    "contractIds": []
+  },
+  {
+    "id": "genk-automotive",
+    "name": "Genk Automotive Parts",
+    "category": "industrial",
+    "address": {
+      "street": "Henry Fordlaan 8",
+      "postalCode": "3600",
+      "city": "Genk",
+      "country": "Belgium"
+    },
+    "coordinates": [5.5047, 50.9657],
+    "assets": [
+      {
+        "id": "genk-automotive-wind",
+        "type": "wind",
+        "capacityKw": 2500
+      }
+    ],
+    "contractIds": ["c-ppa-wind"]
+  },
+  {
+    "id": "lommel-solar-park",
+    "name": "Lommel Solar Park",
+    "category": "solarFarm",
+    "address": {
+      "street": "Kristalpark 2",
+      "postalCode": "3920",
+      "city": "Lommel",
+      "country": "Belgium"
+    },
+    "coordinates": [5.3106, 51.2302],
+    "assets": [
+      {
+        "id": "lommel-solar-park-solar",
+        "type": "solar",
+        "capacityKw": 12000
+      }
+    ],
+    "contractIds": ["c-ppa-solar"]
+  },
+  {
+    "id": "hannut-solar-farm",
+    "name": "Hannut Solar Farm",
+    "category": "solarFarm",
+    "address": {
+      "street": "Chaussée de Namur 120",
+      "postalCode": "4280",
+      "city": "Hannut",
+      "country": "Belgium"
+    },
+    "coordinates": [5.0781, 50.6724],
+    "assets": [
+      {
+        "id": "hannut-solar-farm-solar",
+        "type": "solar",
+        "capacityKw": 6500
+      }
+    ],
+    "contractIds": []
+  }
+]

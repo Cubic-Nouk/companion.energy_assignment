@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Outlet } from 'react-router'
 
 import { Sidebar } from '../components/Sidebar/Sidebar'
@@ -10,7 +11,10 @@ export function AppLayout() {
     <div className={styles.layout}>
       <Sidebar organisationName="Org-Energy" categories={NAVIGATION} user={CURRENT_USER} />
       <main className={styles.main}>
-        <Outlet />
+        {/* A lazily loaded page renders nothing for the moment it loads; the shell stays put. */}
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   )

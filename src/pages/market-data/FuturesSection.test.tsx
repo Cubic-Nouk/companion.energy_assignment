@@ -1,16 +1,20 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
-import { describe, expect, it } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 
 import { routes } from '../../app/routes'
-import { LAZY_ROUTE_TIMEOUT } from '../../test/constants'
+
+// Load the lazy page up front: a cold compile inside a test can outlast its time limit.
+beforeAll(async () => {
+  await import('./FuturesSection')
+})
 
 /** Renders the app at a URL and waits for the lazily loaded futures section. */
 async function renderAt(url: string) {
   const router = createMemoryRouter(routes, { initialEntries: [url] })
   render(<RouterProvider router={router} />)
-  await screen.findByRole('group', { name: 'Futures filters' }, LAZY_ROUTE_TIMEOUT)
+  await screen.findByRole('group', { name: 'Futures filters' })
   return router
 }
 

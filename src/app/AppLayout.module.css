@@ -1,6 +1,7 @@
+/* A fixed viewport height, with the main area scrolling: pages such as the map can fill it. */
 .layout {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 /* Column so a page can let its content area grow to the bottom of the viewport. */
@@ -9,4 +10,5 @@
   flex: 1;
   flex-direction: column;
   min-width: 0;
+  overflow-y: auto;
 }

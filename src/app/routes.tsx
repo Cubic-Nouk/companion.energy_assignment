@@ -1,34 +1,27 @@
 import { Navigate, type RouteObject } from 'react-router'
 
-import { ContractsPage } from '../pages/ContractsPage'
 import { MarketDataPage } from '../pages/market-data/MarketDataPage'
 import { FUTURES_PATH, MARKET_DATA_PATH } from '../pages/market-data/sections'
 import { AppLayout } from './AppLayout'
+import { ControlRoomPage, FuturesSection } from './lazyPages'
 
-const CONTRACTS_PATH = '/contracts'
+const CONTROL_ROOM_PATH = '/control-room'
 
 export const routes: RouteObject[] = [
   {
     element: <AppLayout />,
     children: [
-      { index: true, element: <Navigate to={CONTRACTS_PATH} replace /> },
-      { path: CONTRACTS_PATH, element: <ContractsPage /> },
+      { index: true, element: <Navigate to={CONTROL_ROOM_PATH} replace /> },
+      { path: CONTROL_ROOM_PATH, element: <ControlRoomPage /> },
       {
         path: MARKET_DATA_PATH,
         element: <MarketDataPage />,
         children: [
           { index: true, element: <Navigate to={FUTURES_PATH} replace /> },
-          {
-            path: FUTURES_PATH,
-            // Split out: the futures data, chart and filter controls load only when opened.
-            lazy: async () => {
-              const { FuturesSection } = await import('../pages/market-data/FuturesSection')
-              return { Component: FuturesSection }
-            },
-          },
+          { path: FUTURES_PATH, element: <FuturesSection /> },
         ],
       },
-      { path: '*', element: <Navigate to={CONTRACTS_PATH} replace /> },
+      { path: '*', element: <Navigate to={CONTROL_ROOM_PATH} replace /> },
     ],
   },
 ]

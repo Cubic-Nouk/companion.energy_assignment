@@ -30,6 +30,23 @@
   --color-series-5: #e87ba4;
   --color-series-6: #008300;
 
+  /*
+   * Hex from here to the series palette: these are the product's own values (brand) and
+   * Tailwind's tints (asset kinds), kept as given rather than re-encoded.
+   */
+  /* Palette: brand. White on it is 4.83:1, above AA for text and for icons. */
+  --color-primary: #5d5fef;
+
+  /* Palette: asset kinds, a light tint behind a stronger icon colour. */
+  --color-asset-grid-bg: var(--color-n-100);
+  --color-asset-grid-icon: var(--color-n-600);
+  --color-asset-battery-bg: #f0fdf4;
+  --color-asset-battery-icon: #16a34a;
+  --color-asset-solar-bg: #fefce8;
+  --color-asset-solar-icon: #ea580c;
+  --color-asset-wind-bg: #eff6ff;
+  --color-asset-wind-icon: #2563eb;
+
   /* Semantic colors */
   --color-bg: var(--color-white);
   --color-canvas: var(--color-n-100);
@@ -75,6 +92,7 @@
   --control-height: 36px;
 
   /* Elevation */
+  --shadow-card: 0 1px 3px oklch(0.13 0.028 261.692 / 0.08);
   --shadow-popover: 0 8px 24px oklch(0.13 0.028 261.692 / 0.1);
 
   /* Motion */

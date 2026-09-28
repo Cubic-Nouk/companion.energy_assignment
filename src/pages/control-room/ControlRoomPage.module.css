@@ -1,0 +1,64 @@
+/*
+ * The map and a site's diagram share one area. With no site open the map fills it; with one open
+ * the diagram fills it and the map shrinks to an embed in the bottom-left corner. The map stays
+ * the same element throughout, so it never reloads.
+ */
+.workspace {
+  position: relative;
+  display: grid;
+  flex: 1;
+  min-height: 0;
+}
+
+.mapArea,
+.diagramArea {
+  grid-area: 1 / 1;
+}
+
+.diagramArea {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+}
+
+.diagramArea > * {
+  flex: 1;
+}
+
+.mapArea {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+}
+
+.workspace[data-site-open='true'] .mapArea {
+  position: absolute;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  z-index: 5;
+  width: min(360px, calc(100% - 2 * var(--space-4)));
+  height: 230px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-popover);
+}
+
+/* As an embed the map is context only: the key would cover half of it. */
+.workspace[data-site-open='true'] .legend {
+  display: none;
+}
+
+/* The key floats over the map, clear of the zoom controls on the right. */
+.legend {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  max-width: calc(100% - 2 * var(--space-3) - 48px);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-popover);
+}

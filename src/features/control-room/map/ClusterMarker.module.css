@@ -1,0 +1,35 @@
+.cluster {
+  display: grid;
+  place-items: center;
+  width: var(--cluster-size);
+  height: var(--cluster-size);
+  padding: 0;
+  border: 2px solid var(--color-surface);
+  border-radius: var(--radius-md);
+  background: var(--color-n-800);
+  box-shadow: var(--shadow-popover);
+  color: var(--color-white);
+  font: inherit;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  --cluster-size: 32px;
+}
+
+.cluster[data-size='medium'] {
+  --cluster-size: 38px;
+}
+
+.cluster[data-size='large'] {
+  --cluster-size: 44px;
+}
+
+.cluster:hover {
+  background: var(--color-black);
+}
+
+.cluster:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 2px;
+}

@@ -1,0 +1,9 @@
+.canvas {
+  flex: 1;
+  min-height: 0;
+  background: var(--color-surface);
+  /* React Flow reads these variables for its dots and links. */
+  --xy-background-pattern-color: var(--color-n-300);
+  --xy-edge-stroke-default: var(--color-n-400);
+  --xy-edge-stroke-width-default: 1.5;
+}

@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Outlet } from 'react-router'
 
 import { TabNav } from '../../components/TabNav/TabNav'
@@ -11,7 +12,10 @@ export function MarketDataPage() {
       <PageHeader title="Market Data" />
       <TabNav label="Market data sections" items={MARKET_DATA_SECTIONS} />
       <div className={styles.content}>
-        <Outlet />
+        {/* Keeps the header and tabs on screen while a lazily loaded section arrives. */}
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </div>
     </>
   )
