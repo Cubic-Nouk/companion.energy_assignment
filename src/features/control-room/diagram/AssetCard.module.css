@@ -15,8 +15,20 @@
 }
 
 .card[data-kind='battery'] {
-  --kind-bg: var(--color-asset-battery-bg);
-  --kind-icon: var(--color-asset-battery-icon);
+  --kind-bg: var(--color-surface);
+}
+
+/* A battery's colour is its charge. Declared after the kind rules, at the same specificity. */
+.card[data-level='low'] {
+  --kind-icon: var(--color-charge-low);
+}
+
+.card[data-level='medium'] {
+  --kind-icon: var(--color-charge-medium);
+}
+
+.card[data-level='full'] {
+  --kind-icon: var(--color-charge-full);
 }
 
 .card[data-kind='solar'] {
@@ -72,6 +84,11 @@
 
 .subtitleIcon {
   flex-shrink: 0;
+}
+
+/* Energy flowing in: the bolt turns green. */
+.subtitleIcon[data-charging='true'] {
+  color: var(--color-charging);
 }
 
 .grip {

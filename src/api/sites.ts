@@ -1,6 +1,7 @@
 import fixture from '../../data/sites.json'
 import {
   isAssetType,
+  isBatteryFlow,
   isSiteCategory,
   type Address,
   type Asset,
@@ -40,21 +41,32 @@ function parseAddress(raw: Address, siteId: string): Address {
   return { ...raw }
 }
 
-interface RawAsset {
+/** An asset as the fixture stores it, before its fields are checked. */
+export interface RawAsset {
   id: string
+  name?: string
   type: string
   capacityKw: number
   isSteered?: boolean
+  stateOfChargePercent?: number
+  flow?: string
 }
 
-function parseAsset(raw: RawAsset, siteId: string): Asset {
+const isPercent = (value: number | undefined): value is number =>
+  value !== undefined && value >= 0 && value <= 100
+
+/** Checks one asset from the fixture; exported so its rules are tested directly. */
+export function parseAsset(raw: RawAsset, siteId: string): Asset {
   const invalid = () => new Error(`data/sites.json: asset ${raw.id} on site ${siteId} is invalid`)
   if (!isAssetType(raw.type) || raw.capacityKw <= 0) throw invalid()
 
-  const base = { id: raw.id, capacityKw: raw.capacityKw }
+  if (raw.name?.trim() === '') throw invalid()
+  const base = { id: raw.id, capacityKw: raw.capacityKw, ...(raw.name ? { name: raw.name } : {}) }
   if (raw.type === 'battery') {
-    if (raw.isSteered === undefined) throw invalid()
-    return { ...base, type: 'battery', isSteered: raw.isSteered }
+    const { isSteered, stateOfChargePercent, flow } = raw
+    if (isSteered === undefined || !isPercent(stateOfChargePercent)) throw invalid()
+    if (flow === undefined || !isBatteryFlow(flow)) throw invalid()
+    return { ...base, type: 'battery', isSteered, stateOfChargePercent, flow }
   }
   return { ...base, type: raw.type }
 }

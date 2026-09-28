@@ -20,7 +20,9 @@
         "id": "antwerp-cold-storage-battery",
         "type": "battery",
         "capacityKw": 500,
-        "isSteered": false
+        "isSteered": false,
+        "stateOfChargePercent": 72,
+        "flow": "charging"
       }
     ],
     "contractIds": ["c-engie-2026", "c-hedge-cal27"]
@@ -80,7 +82,9 @@
         "id": "antwerp-terminal-battery",
         "type": "battery",
         "capacityKw": 1000,
-        "isSteered": true
+        "isSteered": true,
+        "stateOfChargePercent": 45,
+        "flow": "discharging"
       }
     ],
     "contractIds": ["c-luminus-spot", "c-ppa-wind"]
@@ -160,7 +164,9 @@
         "id": "ghent-paper-battery",
         "type": "battery",
         "capacityKw": 750,
-        "isSteered": false
+        "isSteered": false,
+        "stateOfChargePercent": 18,
+        "flow": "idle"
       }
     ],
     "contractIds": []
@@ -195,7 +201,9 @@
         "id": "ghent-datacenter-battery",
         "type": "battery",
         "capacityKw": 2000,
-        "isSteered": false
+        "isSteered": false,
+        "stateOfChargePercent": 91,
+        "flow": "idle"
       }
     ],
     "contractIds": ["c-hedge-cal27"]
@@ -275,7 +283,9 @@
         "id": "brussels-mall-battery",
         "type": "battery",
         "capacityKw": 300,
-        "isSteered": false
+        "isSteered": false,
+        "stateOfChargePercent": 63,
+        "flow": "discharging"
       }
     ],
     "contractIds": ["c-engie-2026"]
@@ -313,10 +323,58 @@
     "coordinates": [4.4892, 51.0368],
     "assets": [
       {
-        "id": "mechelen-pharma-battery",
+        "id": "mechelen-pharma-battery-1",
+        "name": "Battery 1",
         "type": "battery",
-        "capacityKw": 1500,
-        "isSteered": false
+        "capacityKw": 500,
+        "isSteered": false,
+        "stateOfChargePercent": 12,
+        "flow": "charging"
+      },
+      {
+        "id": "mechelen-pharma-battery-2",
+        "name": "Battery 2",
+        "type": "battery",
+        "capacityKw": 500,
+        "isSteered": true,
+        "stateOfChargePercent": 22,
+        "flow": "discharging"
+      },
+      {
+        "id": "mechelen-pharma-battery-3",
+        "name": "Battery 3",
+        "type": "battery",
+        "capacityKw": 500,
+        "isSteered": false,
+        "stateOfChargePercent": 48,
+        "flow": "charging"
+      },
+      {
+        "id": "mechelen-pharma-battery-4",
+        "name": "Battery 4",
+        "type": "battery",
+        "capacityKw": 500,
+        "isSteered": false,
+        "stateOfChargePercent": 58,
+        "flow": "idle"
+      },
+      {
+        "id": "mechelen-pharma-battery-5",
+        "name": "Battery 5",
+        "type": "battery",
+        "capacityKw": 500,
+        "isSteered": true,
+        "stateOfChargePercent": 84,
+        "flow": "discharging"
+      },
+      {
+        "id": "mechelen-pharma-battery-6",
+        "name": "Battery 6",
+        "type": "battery",
+        "capacityKw": 500,
+        "isSteered": false,
+        "stateOfChargePercent": 96,
+        "flow": "idle"
       }
     ],
     "contractIds": []
@@ -436,7 +494,9 @@
         "id": "liege-steel-battery",
         "type": "battery",
         "capacityKw": 1200,
-        "isSteered": true
+        "isSteered": true,
+        "stateOfChargePercent": 80,
+        "flow": "discharging"
       }
     ],
     "contractIds": ["c-engie-2026", "c-hedge-cal27"]

@@ -7,13 +7,17 @@ import { routes } from './routes'
 // MapLibre needs WebGL, which jsdom lacks; routing is what is under test here.
 vi.mock('../features/control-room/map/SiteMap', () => ({ SiteMap: () => null }))
 
+/** The map page pulls in MapLibre; compiling it cold, with every test file running in parallel,
+ * can outlast the 10 s default for a hook. */
+const PRELOAD_TIMEOUT_MS = 30_000
+
 // Load the lazy pages up front: a cold compile inside a test can outlast its time limit.
 beforeAll(async () => {
   await Promise.all([
     import('../pages/control-room/ControlRoomPage'),
     import('../pages/market-data/FuturesSection'),
   ])
-})
+}, PRELOAD_TIMEOUT_MS)
 
 function renderAt(path: string) {
   const router = createMemoryRouter(routes, { initialEntries: [path] })

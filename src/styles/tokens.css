@@ -40,12 +40,16 @@
   /* Palette: asset kinds, a light tint behind a stronger icon colour. */
   --color-asset-grid-bg: var(--color-n-100);
   --color-asset-grid-icon: var(--color-n-600);
-  --color-asset-battery-bg: #f0fdf4;
-  --color-asset-battery-icon: #16a34a;
   --color-asset-solar-bg: #fefce8;
   --color-asset-solar-icon: #ea580c;
   --color-asset-wind-bg: #eff6ff;
   --color-asset-wind-icon: #2563eb;
+
+  /* Palette: battery charge. Each is at least 3:1 on white, as an icon needs. */
+  --color-charge-low: #dc2626;
+  --color-charge-medium: #d97706;
+  --color-charge-full: #16a34a;
+  --color-charging: var(--color-charge-full);
 
   /* Semantic colors */
   --color-bg: var(--color-white);

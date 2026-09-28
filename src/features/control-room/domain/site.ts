@@ -5,13 +5,33 @@ export const ASSET_TYPES: readonly AssetType[] = ['solar', 'battery', 'wind']
 
 interface AssetBase {
   id: string
+  /** Tells apart several assets of one type on a site; without it the type names the asset. */
+  name?: string
   capacityKw: number
 }
+
+/** Which way energy moves through a battery right now: in, out, or neither. */
+export type BatteryFlow = 'charging' | 'discharging' | 'idle'
+
+export const BATTERY_FLOWS: readonly BatteryFlow[] = ['charging', 'discharging', 'idle']
+
+/** Said from the customer's side: what the battery does for the site, not the trade term. */
+export const BATTERY_FLOW_LABELS: Record<BatteryFlow, string> = {
+  charging: 'Charging',
+  discharging: 'Supplying',
+  idle: 'Standby',
+}
+
+export const isBatteryFlow = (value: string): value is BatteryFlow =>
+  (BATTERY_FLOWS as readonly string[]).includes(value)
 
 /** A battery can be steered: charged and discharged by the platform to follow prices. */
 export interface BatteryAsset extends AssetBase {
   type: 'battery'
   isSteered: boolean
+  /** How full it is, from 0 to 100. */
+  stateOfChargePercent: number
+  flow: BatteryFlow
 }
 
 export interface GenerationAsset extends AssetBase {

@@ -1,0 +1,41 @@
+.icon {
+  display: block;
+}
+
+/* Segments above the charge stay faint, so the empty part of the battery still reads. */
+.segment[data-lit='false'] {
+  opacity: 0.15;
+}
+
+/*
+ * Charging fills what is left: the lit segments stay solid and the empty ones above them light
+ * up in turn, then fade together and start again. A full battery pulses its last segment.
+ * Opacity only, so the animation stays on the compositor.
+ */
+@keyframes charge {
+  0%,
+  15% {
+    opacity: 0.15;
+  }
+
+  30%,
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .icon[data-charging='true'] .segment[data-lit='false'],
+  .icon[data-charging='true'][data-level='full'] .segment:last-child {
+    animation: charge 1.8s ease-in-out infinite;
+  }
+
+  /* Segments are the 3rd to 5th children: after the body and the terminal. */
+  .icon[data-charging='true'] .segment:nth-child(5) {
+    animation-delay: 0.3s;
+  }
+}

@@ -1,44 +1,58 @@
 import { Handle, Position, type NodeProps } from '@xyflow/react'
-import { BatteryMedium, Grip, Plug, Sun, Wind, type LucideIcon } from 'lucide-react'
+import { Grip, Plug, Sun, Wind, type LucideIcon } from 'lucide-react'
 import { Tooltip } from 'radix-ui'
 
 import { CONTRACT_ICONS } from '../siteIcons'
 import styles from './AssetCard.module.css'
+import { BATTERY_FLOW_ICON_SIZES, BATTERY_FLOW_ICONS, batteryLevel } from './batteryDisplay'
+import { BatteryIcon } from './BatteryIcon'
 import { CARD_HEIGHT, CARD_WIDTH, type AssetCardNode, type CardKind } from './siteGraph'
 
-const ICONS: Record<CardKind, LucideIcon> = {
+/** Every kind but the battery, which draws its own icon from its charge. */
+const ICONS: Record<Exclude<CardKind, 'battery'>, LucideIcon> = {
   gridConnection: Plug,
-  battery: BatteryMedium,
   solar: Sun,
   wind: Wind,
 }
 
-/** A diagram card: the icon on a tinted strip, then the name with what it is underneath. */
+/**
+ * A diagram card: the icon on a tinted strip, then the name with its state underneath. A battery
+ * draws its own icon instead, coloured and filled by its charge.
+ */
 export function AssetCard({ data }: NodeProps<AssetCardNode>) {
-  const Icon = ICONS[data.kind]
+  const { battery } = data
+  const level = battery ? batteryLevel(battery.stateOfChargePercent) : undefined
+  const Icon = data.kind === 'battery' ? null : ICONS[data.kind]
   const isGridConnection = data.kind === 'gridConnection'
-  // Same icon as the map badge; only the grid connection card carries contracts.
-  const ContractIcon = data.contracts === undefined ? null : CONTRACT_ICONS[data.contracts]
+  // The grid connection marks its contracts like the map badge does; a battery its flow.
+  const SubtitleIcon = battery
+    ? BATTERY_FLOW_ICONS[battery.flow]
+    : data.contracts === undefined
+      ? null
+      : CONTRACT_ICONS[data.contracts]
 
   return (
     <div
       className={styles.card}
       data-kind={data.kind}
+      data-level={level}
       style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
     >
       {/* Links are drawn from the data; handles only anchor them, nobody drags new ones. */}
       <Handle type="target" position={Position.Left} className={styles.handle} />
       <span className={styles.iconArea} aria-hidden="true">
-        <Icon size={18} strokeWidth={1.75} />
+        {battery && level && <BatteryIcon level={level} isCharging={battery.flow === 'charging'} />}
+        {Icon && <Icon size={18} strokeWidth={1.75} />}
       </span>
       <span className={styles.text}>
         <span className={styles.title}>{data.title}</span>
         <span className={styles.subtitle}>
-          {ContractIcon && (
-            <ContractIcon
-              size={14}
+          {SubtitleIcon && (
+            <SubtitleIcon
+              size={battery ? BATTERY_FLOW_ICON_SIZES[battery.flow] : 14}
               strokeWidth={1.75}
               className={styles.subtitleIcon}
+              data-charging={battery?.flow === 'charging'}
               aria-hidden="true"
             />
           )}

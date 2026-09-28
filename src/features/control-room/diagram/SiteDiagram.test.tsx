@@ -13,7 +13,14 @@ const site: Site = {
   coordinates: [4.43, 50.84],
   assets: [
     { id: 'woluwe-solar', type: 'solar', capacityKw: 900 },
-    { id: 'woluwe-battery', type: 'battery', capacityKw: 300, isSteered: false },
+    {
+      id: 'woluwe-battery',
+      type: 'battery',
+      capacityKw: 300,
+      isSteered: false,
+      stateOfChargePercent: 72,
+      flow: 'charging',
+    },
   ],
   contractIds: ['c1'],
 }

@@ -4,6 +4,8 @@ import {
   ASSET_TYPE_LABELS,
   contractCoverage,
   formatContractCount,
+  BATTERY_FLOW_LABELS,
+  type BatteryFlow,
   type ContractCoverage,
   type Asset,
   type AssetType,
@@ -19,6 +21,8 @@ export interface AssetCardData extends Record<string, unknown> {
   subtitle: string
   /** On the grid connection, which carries the contracts: drawn as an icon next to the count. */
   contracts?: ContractCoverage
+  /** On a battery: how full it is and which way energy moves, drawn by its icons. */
+  battery?: { stateOfChargePercent: number; flow: BatteryFlow }
   /** Shown when hovering the icon at the card's right, e.g. whether a battery is steered. */
   hint?: string
 }
@@ -33,6 +37,12 @@ const ASSET_COLUMN_X = 520
 const ASSET_ROW_GAP = 140
 
 const GRID_CONNECTION_LABEL = 'Grid Connection'
+
+/** A battery tells what it is doing; other assets keep their type, as on the live dashboard. */
+function assetSubtitle(asset: Asset): string {
+  if (asset.type !== 'battery') return ASSET_TYPE_LABELS[asset.type]
+  return `${BATTERY_FLOW_LABELS[asset.flow]} · ${String(asset.stateOfChargePercent)}%`
+}
 
 function assetHint(asset: Asset): string | undefined {
   if (asset.type !== 'battery') return undefined
@@ -68,9 +78,12 @@ export function buildSiteGraph(site: Site): { nodes: AssetCardNode[]; edges: Edg
       position: { x: ASSET_COLUMN_X, y: firstAssetY + index * ASSET_ROW_GAP },
       data: {
         kind: asset.type,
-        title: ASSET_TYPE_LABELS[asset.type],
-        subtitle: ASSET_TYPE_LABELS[asset.type],
+        title: asset.name ?? ASSET_TYPE_LABELS[asset.type],
+        subtitle: assetSubtitle(asset),
         ...(hint === undefined ? {} : { hint }),
+        ...(asset.type === 'battery'
+          ? { battery: { stateOfChargePercent: asset.stateOfChargePercent, flow: asset.flow } }
+          : {}),
       },
     }
   })

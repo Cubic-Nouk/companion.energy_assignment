@@ -25,6 +25,43 @@ describe('buildSiteGraph', () => {
     expect(nodes[0]?.data.contracts).toBe(contracts)
   })
 
+  it('titles an asset by its name when it has one, by its type otherwise', () => {
+    const { nodes } = buildSiteGraph(
+      site([
+        { id: 'solar', type: 'solar', capacityKw: 850 },
+        { id: 'wind', name: 'North turbine', type: 'wind', capacityKw: 2000 },
+      ]),
+    )
+
+    expect(nodes.map((n) => n.data.title)).toEqual([
+      'Grid Connection',
+      'Solar Panels',
+      'North turbine',
+    ])
+  })
+
+  it('says what a battery is doing and how full it is, and keeps the type for other assets', () => {
+    const { nodes } = buildSiteGraph(
+      site([
+        { id: 'solar', type: 'solar', capacityKw: 850 },
+        {
+          id: 'battery',
+          type: 'battery',
+          capacityKw: 500,
+          isSteered: false,
+          stateOfChargePercent: 45,
+          flow: 'discharging',
+        },
+      ]),
+    )
+    const [, solar, battery] = nodes
+
+    expect(solar?.data.subtitle).toBe('Solar Panels')
+    expect(solar?.data.battery).toBeUndefined()
+    expect(battery?.data.subtitle).toBe('Supplying · 45%')
+    expect(battery?.data.battery).toEqual({ stateOfChargePercent: 45, flow: 'discharging' })
+  })
+
   it('draws only the grid connection for a site with no assets', () => {
     const { nodes, edges } = buildSiteGraph(site([]))
 
@@ -36,7 +73,14 @@ describe('buildSiteGraph', () => {
     const { edges } = buildSiteGraph(
       site([
         { id: 'solar', type: 'solar', capacityKw: 850 },
-        { id: 'battery', type: 'battery', capacityKw: 500, isSteered: false },
+        {
+          id: 'battery',
+          type: 'battery',
+          capacityKw: 500,
+          isSteered: false,
+          stateOfChargePercent: 72,
+          flow: 'charging',
+        },
       ]),
     )
 
@@ -64,8 +108,22 @@ describe('buildSiteGraph', () => {
     const { nodes } = buildSiteGraph(
       site([
         { id: 'solar', type: 'solar', capacityKw: 850 },
-        { id: 'battery', type: 'battery', capacityKw: 500, isSteered: false },
-        { id: 'steered', type: 'battery', capacityKw: 500, isSteered: true },
+        {
+          id: 'battery',
+          type: 'battery',
+          capacityKw: 500,
+          isSteered: false,
+          stateOfChargePercent: 72,
+          flow: 'charging',
+        },
+        {
+          id: 'steered',
+          type: 'battery',
+          capacityKw: 500,
+          isSteered: true,
+          stateOfChargePercent: 40,
+          flow: 'discharging',
+        },
       ]),
     )
 

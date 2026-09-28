@@ -64,6 +64,46 @@ describe('AssetCard', () => {
     expect(container.querySelector('.lucide-file, .lucide-files')).toBeNull()
   })
 
+  it.each([
+    [15, 'low', 1],
+    [50, 'medium', 2],
+    [90, 'full', 3],
+  ] as const)('at %i%% colours the battery %s and lights %i segments', (percent, level, lit) => {
+    const { container } = renderCard({
+      kind: 'battery',
+      title: 'Battery',
+      subtitle: '',
+      battery: { stateOfChargePercent: percent, flow: 'idle' },
+    })
+
+    expect(container.querySelector('[data-kind="battery"]')).toHaveAttribute('data-level', level)
+    expect(container.querySelectorAll('[data-lit="true"]')).toHaveLength(lit)
+  })
+
+  it.each([
+    ['charging', '.lucide-zap', 'true'],
+    ['discharging', '.lucide-arrow-up-from-line', 'false'],
+    ['idle', '.lucide-pause', 'false'],
+  ] as const)('while %s shows its flow icon, green only when charging', (flow, icon, animated) => {
+    const { container } = renderCard({
+      kind: 'battery',
+      title: 'Battery',
+      subtitle: '',
+      battery: { stateOfChargePercent: 50, flow },
+    })
+
+    expect(container.querySelector(icon)).toHaveAttribute('data-charging', animated)
+    // The battery icon animates its segments only while charging.
+    expect(container.querySelector('svg[data-level]')).toHaveAttribute('data-charging', animated)
+  })
+
+  it('draws no charge level on cards that are not batteries', () => {
+    const { container } = renderCard({ kind: 'solar', title: 'Solar Panels', subtitle: 'Solar' })
+
+    expect(container.querySelector('[data-level]')).toBeNull()
+    expect(container.querySelector('[data-lit]')).toBeNull()
+  })
+
   it('gives the grid connection no drag grip and assets one', () => {
     const { container, unmount } = renderCard({
       kind: 'gridConnection',
