@@ -6,7 +6,7 @@ import {
   type Site,
 } from '../domain/site'
 import styles from './SiteLegend.module.css'
-import { CONTRACT_BADGE_ICONS, SITE_CATEGORY_ICONS } from './siteIcons'
+import { CONTRACT_ICONS, SITE_CATEGORY_ICONS } from '../siteIcons'
 
 const COVERAGE_LABELS: Record<ContractCoverage, string> = {
   single: 'One contract',
@@ -32,7 +32,7 @@ export function SiteLegend({ sites }: SiteLegendProps) {
     <div className={styles.legend}>
       <ul className={styles.list} aria-label="Contracts">
         {COVERAGE_ORDER.map((coverage) => {
-          const Icon = coverage === 'none' ? null : CONTRACT_BADGE_ICONS[coverage]
+          const Icon = CONTRACT_ICONS[coverage]
           return (
             <li key={coverage}>
               <span className={styles.badge} data-empty={Icon === null} aria-hidden="true">

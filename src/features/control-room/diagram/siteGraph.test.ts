@@ -15,13 +15,14 @@ const site = (assets: Site['assets']): Site => ({
 
 describe('buildSiteGraph', () => {
   it.each([
-    [[], 'No contract'],
-    [['c1'], '1 contract'],
-    [['c1', 'c2'], '2 contracts'],
-  ])('with contracts %j subtitles the grid connection "%s"', (contractIds, subtitle) => {
+    [[], 'No contract', 'none'],
+    [['c1'], '1 contract', 'single'],
+    [['c1', 'c2'], '2 contracts', 'multiple'],
+  ])('with contracts %j subtitles the grid connection "%s"', (contractIds, subtitle, contracts) => {
     const { nodes } = buildSiteGraph({ ...site([]), contractIds })
 
     expect(nodes[0]?.data.subtitle).toBe(subtitle)
+    expect(nodes[0]?.data.contracts).toBe(contracts)
   })
 
   it('draws only the grid connection for a site with no assets', () => {

@@ -63,8 +63,15 @@
 }
 
 .subtitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
+}
+
+.subtitleIcon {
+  flex-shrink: 0;
 }
 
 .grip {

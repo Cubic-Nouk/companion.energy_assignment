@@ -4,7 +4,7 @@ import {
   SITE_CATEGORY_LABELS,
   type Site,
 } from '../domain/site'
-import { CONTRACT_BADGE_ICONS, SITE_CATEGORY_ICONS } from './siteIcons'
+import { CONTRACT_ICONS, SITE_CATEGORY_ICONS } from '../siteIcons'
 import styles from './SiteMarker.module.css'
 
 interface SiteMarkerProps {
@@ -17,7 +17,7 @@ interface SiteMarkerProps {
 export function SiteMarker({ site, isSelected, onSelect }: SiteMarkerProps) {
   const CategoryIcon = SITE_CATEGORY_ICONS[site.category]
   const coverage = contractCoverage(site)
-  const BadgeIcon = coverage === 'none' ? null : CONTRACT_BADGE_ICONS[coverage]
+  const BadgeIcon = CONTRACT_ICONS[coverage]
   const contracts = formatContractCount(site.contractIds.length).toLowerCase()
 
   return (

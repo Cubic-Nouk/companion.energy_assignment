@@ -77,7 +77,7 @@ export function formatContractCount(count: number): string {
   return count === 1 ? '1 contract' : `${String(count)} contracts`
 }
 
-/** How many contracts cover a site, in the three states the map tells apart. */
+/** How many contracts cover a site, in the three states the map and the diagram tell apart. */
 export type ContractCoverage = 'none' | 'single' | 'multiple'
 
 export function contractCoverage(site: Site): ContractCoverage {

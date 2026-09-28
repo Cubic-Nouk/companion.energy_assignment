@@ -36,6 +36,34 @@ describe('AssetCard', () => {
     expect(await screen.findByRole('tooltip')).toHaveTextContent('Not Steering')
   })
 
+  it.each([
+    ['single', '.lucide-file'],
+    ['multiple', '.lucide-files'],
+  ] as const)(
+    'marks %s contracts on the grid connection with the map badge icon',
+    (contracts, icon) => {
+      const { container } = renderCard({
+        kind: 'gridConnection',
+        title: 'Grid Connection',
+        subtitle: '1 contract',
+        contracts,
+      })
+
+      expect(container.querySelector(icon)).not.toBeNull()
+    },
+  )
+
+  it('shows no contract icon when no contract covers the site', () => {
+    const { container } = renderCard({
+      kind: 'gridConnection',
+      title: 'Grid Connection',
+      subtitle: 'No contract',
+      contracts: 'none',
+    })
+
+    expect(container.querySelector('.lucide-file, .lucide-files')).toBeNull()
+  })
+
   it('gives the grid connection no drag grip and assets one', () => {
     const { container, unmount } = renderCard({
       kind: 'gridConnection',

@@ -2,7 +2,9 @@ import type { Edge, Node } from '@xyflow/react'
 
 import {
   ASSET_TYPE_LABELS,
+  contractCoverage,
   formatContractCount,
+  type ContractCoverage,
   type Asset,
   type AssetType,
   type Site,
@@ -15,6 +17,8 @@ export interface AssetCardData extends Record<string, unknown> {
   kind: CardKind
   title: string
   subtitle: string
+  /** On the grid connection, which carries the contracts: drawn as an icon next to the count. */
+  contracts?: ContractCoverage
   /** Shown when hovering the icon at the card's right, e.g. whether a battery is steered. */
   hint?: string
 }
@@ -52,6 +56,7 @@ export function buildSiteGraph(site: Site): { nodes: AssetCardNode[]; edges: Edg
       kind: 'gridConnection',
       title: GRID_CONNECTION_LABEL,
       subtitle: formatContractCount(site.contractIds.length),
+      contracts: contractCoverage(site),
     },
   }
 

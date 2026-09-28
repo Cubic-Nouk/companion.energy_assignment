@@ -2,6 +2,7 @@ import { Handle, Position, type NodeProps } from '@xyflow/react'
 import { BatteryMedium, Grip, Plug, Sun, Wind, type LucideIcon } from 'lucide-react'
 import { Tooltip } from 'radix-ui'
 
+import { CONTRACT_ICONS } from '../siteIcons'
 import styles from './AssetCard.module.css'
 import { CARD_HEIGHT, CARD_WIDTH, type AssetCardNode, type CardKind } from './siteGraph'
 
@@ -16,6 +17,8 @@ const ICONS: Record<CardKind, LucideIcon> = {
 export function AssetCard({ data }: NodeProps<AssetCardNode>) {
   const Icon = ICONS[data.kind]
   const isGridConnection = data.kind === 'gridConnection'
+  // Same icon as the map badge; only the grid connection card carries contracts.
+  const ContractIcon = data.contracts === undefined ? null : CONTRACT_ICONS[data.contracts]
 
   return (
     <div
@@ -30,7 +33,17 @@ export function AssetCard({ data }: NodeProps<AssetCardNode>) {
       </span>
       <span className={styles.text}>
         <span className={styles.title}>{data.title}</span>
-        <span className={styles.subtitle}>{data.subtitle}</span>
+        <span className={styles.subtitle}>
+          {ContractIcon && (
+            <ContractIcon
+              size={14}
+              strokeWidth={1.75}
+              className={styles.subtitleIcon}
+              aria-hidden="true"
+            />
+          )}
+          {data.subtitle}
+        </span>
       </span>
       {!isGridConnection && <AssetGrip hint={data.hint} />}
       {isGridConnection && (
