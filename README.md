@@ -1,8 +1,8 @@
 # Companion.energy: dashboard prototype
 
 A prototype for the Companion.energy contract management case. The reasoning behind it (problem,
-alternatives, decisions) is in the accompanying document; this README covers what the code does and
-how to run it.
+alternatives, decisions) is in [the case document](docs/contract-management-case.pdf); this README
+covers what the code does and how to run it.
 
 ## Running it
 
